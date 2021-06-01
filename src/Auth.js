@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import stateChanged from './utils/stateChanged'
 
 export const AuthContext = React.createContext()
 

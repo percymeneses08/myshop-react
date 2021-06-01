@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import PopUp from '../PopUp/popup'
 
 const Header = ({ list }) => {
-  console.log(list)
+  const [activeClass, setActiveClass] = useState('hidden')
+
+  const changeActiveClass = _ => {
+    if (activeClass === 'hidden') {
+      setActiveClass('show')
+    } else {
+      setActiveClass('hidden')
+    }
+  }
+
   return (
     <div>
       <header style={{
         display: "flex",
       }}>
-        <h1 style={{
+        <Link to="/products" style={{
           margin: "20px auto",
-        }}>My Shop</h1>
+          color: "black",
+          textDecoration: "none",
+          fontSize: "30px"
+        }}>My Shop</Link>
       </header>
-      <section style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: 'center',
-        padding: "0 38px"
-      }}>
+      <section
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: 'center',
+          padding: "0 38px"
+        }}
+        onClick={changeActiveClass}
+      >
         <div style={{
           display: "flex",
           alignItems: "center"
@@ -38,7 +56,9 @@ const Header = ({ list }) => {
           justifyContent: 'center',
           alignItems: 'center',
           padding: "5px 10px",
-          height: "min-content"
+          height: "min-content",
+          position: 'relative',
+          cursor: 'pointer'
         }}>
           <figure style={{
             border: "2px solid black",
@@ -56,8 +76,10 @@ const Header = ({ list }) => {
             alignItems: 'center',
             marginLeft: '13px'
           }}>
-            <p>4</p>
+            {/* <p>4</p> */}
+            <p>{list.length}</p>
           </div>
+          <PopUp activeClass={activeClass} list={list} />
         </div>
       </section>
     </div>

@@ -5,16 +5,16 @@ import { AuthProvider } from './Auth'
 import Layout from './components/Layout/layout'
 import Detail from './components/Detail/detail'
 
-import logo from './logo.svg';
 import './App.css';
 
 import Home from './pages/Home/home'
 
 function App() {
-  const list = []
+  const [list, setList] = useState([])
 
-  function updateList(item) {
-    list.push(item)
+  const updateList = item => {
+    // list.push(item)
+    setList(result => [...result, item])
     console.log(list)
   }
 
@@ -26,7 +26,9 @@ function App() {
             <Route exact path="/products">
               <Home updateList={updateList} />
             </Route>
-            <Route exact path="/products/details/:productId" component={Detail}></Route>
+            <Route exact path="/products/details/:productId">
+              <Detail updateList={updateList} />
+            </Route>
           </Layout>
         </Switch>
       </BrowserRouter>

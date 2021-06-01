@@ -1,0 +1,6 @@
+.title-links {
+  text-decoration: none;
+}
+.title-links:hover {
+  text-decoration: underline;
+}
